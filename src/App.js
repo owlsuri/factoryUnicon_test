@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import GetEntireInquiry from "./components/GetEntireInquiry";
+import GetSingleInquiry from "./components/GetSingleInquiry";
+import GetUser from "./components/GetUser";
+import SaveInquiry from "./components/SaveInquiry";
+import SaveUser from "./components/SaveUser";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/saveUser" element={<SaveUser />} />
+        <Route path="/saveInquiry" element={<SaveInquiry />} />
+        <Route path="/getUser/:phone" element={<GetUser />} />
+        <Route path="/getSingleInquiry/:uid" element={<GetSingleInquiry />} />
+        <Route path="/getEntireInquiry" element={<GetEntireInquiry />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
