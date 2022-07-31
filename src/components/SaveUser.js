@@ -2,19 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
 import TextInput from "../commons/inputs/textInput";
-import {
-  accessKeyState,
-  baseUrlState,
-  phoneNumberState,
-} from "../commons/store";
+import { phoneNumberState, userInfoState } from "../commons/store";
+import { baseUrl } from "../commons/default/baseUrl";
+import { accessKey } from "../commons/default/accessKey";
 
 export default function SaveUser() {
   const navigate = useNavigate();
 
-  const [accessKey] = useRecoilState(accessKeyState);
-  const [phone, setPhone] = useState(phoneNumberState);
-  const [baseUrl] = useRecoilState(baseUrlState);
-  const [userInfo] = useState("");
+  const [phone, setPhone] = useRecoilState(phoneNumberState);
+  const [userInfo] = useRecoilState(userInfoState);
   const [isLoading, setIsLoading] = useState(false);
 
   const onChangePhone = (e) => {
@@ -58,12 +54,8 @@ export default function SaveUser() {
           placeholder={"010-1234-5678"}
           onChange={onChangePhone}
         />
-        <button
-          style={{ opacity: isLoading ? 0.5 : 1 }}
-          className="btn_save"
-          onClick={onClickSave}
-        >
-          {isLoading ? "저장중..." : "다음"}
+        <button className="btn_save" onClick={onClickSave}>
+          다음
         </button>
       </div>
     </div>

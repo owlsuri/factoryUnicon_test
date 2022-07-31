@@ -26,18 +26,26 @@ export const Error = styled.div`
 `;
 export const LabelBox = styled.div`
   display: flex;
-  padding: 20px 0 5px 0;
+  padding: 50px 0 5px 0;
 `;
 export const MainLabel = styled.div`
   font-size: 22px;
   font-weight: 600;
 `;
 export const SubLabel = styled.div`
+  width: 350px;
+  height: 20px;
+  text-align: center;
+  background-color: #ebf6ff;
   font-size: 17px;
   font-weight: 600;
-  padding: 10px 5px 5px 5px;
+  padding: 5px 0;
+  margin: 10px 5px 5px 5px;
 `;
-
+export const SubClass = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+`;
 export const Must = styled.div`
   font-size: 17px;
   font-weight: 700;
@@ -63,4 +71,21 @@ export const Number = styled.div`
 export const Unit = styled.div`
   font-size: 20px;
   padding-left: 10px;
+`;
+export const SubmitBtn = styled.button`
+  width: 330px;
+  height: 50px;
+  background-color: ${(props) => (props.isActive ? "#1565c0" : "#E5E5E5")};
+  color: ${(props) => (props.isActive ? "#fff" : "#a6a6a6")};
+`;
+export const StyledTextarea = styled.textarea`
+  width: 300px;
+  height: 100px;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 20px;
+  resize: none;
+  border: 1px solid #a6a6a6;
+  margin: 10px 0;
+  border-radius: 8px;
 `;
