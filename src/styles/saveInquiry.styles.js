@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const Background = styled.div`
   background: linear-gradient(130deg, #f2e5fe, #e0e9fe, #d5f5ff);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 150px 0;
+  padding: 150px 0 50px 0;
 `;
 
 export const Title = styled.div`
@@ -88,4 +87,16 @@ export const StyledTextarea = styled.textarea`
   border: 1px solid #a6a6a6;
   margin: 10px 0;
   border-radius: 8px;
+`;
+export const InquiryCheck = styled.div`
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #1565c0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 10px;
+  cursor: pointer;
 `;

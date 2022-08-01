@@ -16,8 +16,8 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route path="/saveUser" element={<SaveUser />} />
         <Route path="/saveInquiry" element={<SaveInquiry />} />
-        <Route path="/getUser/:phone" element={<GetUser />} />
-        <Route path="/getSingleInquiry/:uid" element={<GetSingleInquiry />} />
+        <Route path="/getUser" element={<GetUser />} />
+        <Route path="/getSingleInquiry" element={<GetSingleInquiry />} />
         <Route path="/getEntireInquiry" element={<GetEntireInquiry />} />
       </Routes>
     </BrowserRouter>

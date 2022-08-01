@@ -3,12 +3,13 @@ import TextInput from "../commons/inputs/textInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { baseUrl } from "../commons/default/baseUrl";
 import { accessKey } from "../commons/default/accessKey";
 import { useRecoilState } from "recoil";
 import { phoneNumberState, userInfoState } from "../commons/store";
 import { useNavigate } from "react-router";
+import InquiryCheck from "../commons/inquiryCheck/inquiryCheck";
 
 const schema = yup.object({
   location: yup.string().required("필수 입력 사항입니다."),
@@ -19,28 +20,15 @@ const schema = yup.object({
   request: yup.string(),
 });
 
-const initialValues = {
-  mainFabric: "직조라벨",
-  mainForm: "양접이",
-  careFabric: "실크라벨",
-  pointFabric: "직조라벨",
-};
-
 export default function SaveInquiry() {
   const navigate = useNavigate();
 
   const [userInfo] = useRecoilState(userInfoState);
   const [phone] = useRecoilState(phoneNumberState);
-  const [values, setValues] = useState(initialValues);
-
-  console.log(userInfo);
-
-  const onChangeValues = (event) => {
-    setValues({
-      ...values,
-      [event.target.id]: event.target.value,
-    });
-  };
+  const [mainFabric, setMainFabric] = useState("직조라벨");
+  const [mainForm, setMainForm] = useState("양접이");
+  const [careFabric] = useState("실크라벨");
+  const [pointFabric, setPointFabric] = useState("직조라벨");
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
@@ -58,17 +46,18 @@ export default function SaveInquiry() {
       body: JSON.stringify({
         accessKey,
         userInfo: { ...userInfo, phone: phone },
+        timestamp: new Date(),
         inquiryInfo: {
           mainLabel: {
-            mainFabric: values.mainFabric,
-            mainForm: values.mainForm,
+            mainFabric,
+            mainForm,
           },
           careLabel: {
-            careFabric: values.careFabric,
+            careFabric,
             location: data.location,
           },
           pointLabel: {
-            pointFabric: values.pointFabric,
+            pointFabric,
             color: data.color,
           },
           labelSize: {
@@ -87,20 +76,6 @@ export default function SaveInquiry() {
     });
   };
 
-  useEffect(() => {
-    let mainFabric = document.getElementById("mainFabric");
-    mainFabric.checked = true;
-
-    let mainForm = document.getElementById("mainForm");
-    mainForm.checked = true;
-
-    let careFabric = document.getElementById("careFabric");
-    careFabric.checked = true;
-
-    let pointFabric = document.getElementById("pointFabric");
-    pointFabric.checked = true;
-  }, []);
-
   return (
     <S.Background>
       <form onSubmit={handleSubmit(onClickSubmit)}>
@@ -114,65 +89,20 @@ export default function SaveInquiry() {
             </S.LabelBox>
             <S.SubLabel> 메인 라벨 </S.SubLabel>
             <S.SubClass>[재질]</S.SubClass>
-            <S.RadioBox>
-              <S.Radio>
-                <input
-                  id="mainFabric"
-                  type="radio"
-                  name="mainLabel"
-                  value="직조라벨"
-                  onChange={onChangeValues}
-                />
-                직조 라벨
-              </S.Radio>
-              <S.Radio>
-                <input
-                  id="mainFabric"
-                  type="radio"
-                  name="mainLabel"
-                  value="실크라벨"
-                  onChange={onChangeValues}
-                />
-                실크 라벨
-              </S.Radio>
-            </S.RadioBox>
+            <InquiryCheck
+              setValues={setMainFabric}
+              value1={"직조라벨"}
+              value2={"실크라벨"}
+            />
             <S.SubClass>[형태]</S.SubClass>
-            <S.RadioBox>
-              <S.Radio>
-                <input
-                  id="mainForm"
-                  type="radio"
-                  name="shape"
-                  value="양접이"
-                  onChange={onChangeValues}
-                />
-                양접이
-              </S.Radio>
-              <S.Radio>
-                <input
-                  id="mainForm"
-                  type="radio"
-                  name="shape"
-                  value="반접이"
-                  onChange={onChangeValues}
-                />
-                반접이
-              </S.Radio>
-            </S.RadioBox>
+            <InquiryCheck
+              setValues={setMainForm}
+              value1={"양접이"}
+              value2={"반접이"}
+            />
             <S.SubLabel>케어 라벨</S.SubLabel>
             <S.SubClass>[재질]</S.SubClass>
-            <S.RadioBox>
-              <S.Radio>
-                <input
-                  id="careFabric"
-                  type="radio"
-                  name="careLabel"
-                  value="실크라벨"
-                  onChange={onChangeValues}
-                />
-                실크 라벨(한 종류)
-              </S.Radio>
-            </S.RadioBox>
+            <S.InquiryCheck>실크라벨(한종류)</S.InquiryCheck>
             <S.SubClass>[부착위치]</S.SubClass>
             <S.StyledTextarea
               placeholder="자유롭게 작성해주세요."
@@ -181,28 +111,11 @@ export default function SaveInquiry() {
             <S.Error>{formState.errors.location?.message}</S.Error>
             <S.SubLabel>포인트 라벨</S.SubLabel>
             <S.SubClass>[재질]</S.SubClass>
-            <S.RadioBox>
-              <S.Radio>
-                <input
-                  id="pointFabric"
-                  type="radio"
-                  name="pointLabel"
-                  value="직조라벨"
-                  onChange={onChangeValues}
-                />
-                직조 라벨
-              </S.Radio>
-              <S.Radio>
-                <input
-                  id="pointFabric"
-                  type="radio"
-                  name="pointLabel"
-                  value="실크라벨"
-                  onChange={onChangeValues}
-                />
-                실크 라벨
-              </S.Radio>
-            </S.RadioBox>
+            <InquiryCheck
+              setValues={setPointFabric}
+              value1={"직조라벨"}
+              value2={"실크라벨"}
+            />
             <S.SubClass>[배경색상]</S.SubClass>
             <TextInput
               type={"text"}
@@ -220,7 +133,7 @@ export default function SaveInquiry() {
               <div>
                 <S.Number>
                   <TextInput
-                    type={"number"}
+                    type={"text"}
                     width={95}
                     placeholder={"가로"}
                     register={register("width")}
@@ -233,7 +146,7 @@ export default function SaveInquiry() {
               <div>
                 <S.Number>
                   <TextInput
-                    type={"number"}
+                    type={"text"}
                     width={95}
                     placeholder={"세로"}
                     register={register("height")}
@@ -251,7 +164,7 @@ export default function SaveInquiry() {
             <div>(기본 1000장, 500장 단위)</div>
             <S.Number>
               <TextInput
-                type={"number"}
+                type={"text"}
                 width={260}
                 placeholder={"수량"}
                 register={register("quantity")}
