@@ -27,6 +27,22 @@ export default function Landing() {
         >
           라벨견적받기
         </button>
+        <button
+          className="btn_save"
+          onClick={() => {
+            navigate("/getUser");
+          }}
+        >
+          회원정보조회
+        </button>
+        <button
+          className="btn_save"
+          onClick={() => {
+            navigate("/getEntireInquiry");
+          }}
+        >
+          견적요청목록
+        </button>
       </div>
     </div>
   );

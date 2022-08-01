@@ -39,3 +39,6 @@ export const Label = styled.div`
 export const Info = styled.div`
   padding: 5px 0;
 `;
+export const Detail = styled.div`
+  width: 300px;
+`;

@@ -4,7 +4,7 @@ export const Background = styled.div`
   background: linear-gradient(130deg, #f2e5fe, #e0e9fe, #d5f5ff);
   display: flex;
   justify-content: center;
-  padding: 150px 0 50px 0;
+  padding: 150px 0 410px 0;
 `;
 
 export const Title = styled.div`

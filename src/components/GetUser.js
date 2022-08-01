@@ -4,8 +4,11 @@ import { baseUrl } from "../commons/default/baseUrl";
 import TextInput from "../commons/inputs/textInput";
 import * as S from "../styles/getUsers.styles";
 import { Background } from "../styles/saveInquiry.styles";
+import { useNavigate } from "react-router";
 
 export default function GetUser() {
+  const navigate = useNavigate();
+
   const [phone, setPhone] = useState("");
   const [data, setData] = useState([]);
   const [inquiryData, setInquiryData] = useState([]);
@@ -57,7 +60,7 @@ export default function GetUser() {
     <Background>
       <div className="wrapper">
         <S.Title>UserInfo</S.Title>
-        <div>조회할 고객의 전화번호를 입력하세요.</div>
+        <div>조회할 전화번호를 입력하세요.</div>
         <S.Search>
           <TextInput
             width={200}
@@ -89,7 +92,7 @@ export default function GetUser() {
             </S.ShowBtn>
           )}
           {isOpen && (
-            <div>
+            <S.Detail>
               <S.Label>메인라벨</S.Label>
               <div>[재질] : {inquiryData?.mainLabel?.mainFabric}</div>
               <div>[형태] : {inquiryData?.mainLabel?.mainForm}</div>
@@ -115,8 +118,17 @@ export default function GetUser() {
                   ? inquiryData?.request
                   : "요청사항이 없습니다."}
               </div>
-            </div>
+            </S.Detail>
           )}
+          <button
+            className="btn_save"
+            style={{ width: "300px" }}
+            onClick={() => {
+              navigate("/getEntireInquiry");
+            }}
+          >
+            견적요청목록
+          </button>
         </div>
       </div>
     </Background>
