@@ -1,10 +1,17 @@
 import styled from "styled-components";
+import { breakPoints } from "../commons/styles/media";
 
 export const Background = styled.div`
   background: linear-gradient(130deg, #f2e5fe, #e0e9fe, #d5f5ff);
   display: flex;
   justify-content: center;
   padding: 150px 0 410px 0;
+  @media ${breakPoints.mobile} {
+    padding: 150px 0 300px 0;
+  }
+  @media ${breakPoints.tablet} {
+    padding: 150px 0 480px 0;
+  }
 `;
 
 export const Title = styled.div`
@@ -32,7 +39,7 @@ export const MainLabel = styled.div`
   font-weight: 600;
 `;
 export const SubLabel = styled.div`
-  width: 350px;
+  width: 330px;
   height: 20px;
   text-align: center;
   background-color: #ebf6ff;

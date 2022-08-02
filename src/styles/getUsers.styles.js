@@ -1,10 +1,6 @@
 import styled from "styled-components";
+import { breakPoints } from "../commons/styles/media";
 
-export const Title = styled.div`
-  font-size: 30px;
-  font-weight: 600;
-  padding-bottom: 30px;
-`;
 export const Search = styled.div`
   display: flex;
   align-items: center;
@@ -14,6 +10,9 @@ export const Btn = styled.div`
   width: 60px;
   height: 50px;
   margin: 0 0 0 10px;
+  @media ${breakPoints.mobile} {
+    font-size: 15px;
+  }
 `;
 export const ShowBtn = styled.button`
   width: 300px;

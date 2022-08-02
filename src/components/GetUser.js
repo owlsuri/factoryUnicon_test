@@ -3,7 +3,7 @@ import { accessKey } from "../commons/default/accessKey";
 import { baseUrl } from "../commons/default/baseUrl";
 import TextInput from "../commons/inputs/textInput";
 import * as S from "../styles/getUsers.styles";
-import { Background } from "../styles/saveInquiry.styles";
+import { Background, Title } from "../styles/saveInquiry.styles";
 import { useNavigate } from "react-router";
 
 export default function GetUser() {
@@ -59,7 +59,7 @@ export default function GetUser() {
   return (
     <Background>
       <div className="wrapper">
-        <S.Title>UserInfo</S.Title>
+        <Title>UserInfo</Title>
         <div>조회할 전화번호를 입력하세요.</div>
         <S.Search>
           <TextInput

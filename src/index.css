@@ -22,6 +22,12 @@ code {
   padding: 50px 150px;
 }
 
+@media (max-width: 380px) {
+  .wrapper {
+    padding: 50px 20px;
+  }
+}
+
 .background {
   background: linear-gradient(150deg, #f2e5fe, #e0e9fe, #d5f5ff);
   display: flex;
