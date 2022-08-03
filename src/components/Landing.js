@@ -11,6 +11,16 @@ const Welcome = styled.div`
   font-weight: 600;
 `;
 
+const Admin = styled.div`
+  width: 100%;
+  border-top: 1px solid #a6a6a6;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export default function Landing() {
   const navigate = useNavigate();
 
@@ -27,22 +37,24 @@ export default function Landing() {
         >
           라벨견적받기
         </button>
-        <button
-          className="btn_save"
-          onClick={() => {
-            navigate("/getUser");
-          }}
-        >
-          회원정보조회
-        </button>
-        <button
-          className="btn_save"
-          onClick={() => {
-            navigate("/getEntireInquiry");
-          }}
-        >
-          견적요청목록
-        </button>
+        <Admin>
+          <button
+            className="btn_save"
+            onClick={() => {
+              navigate("/getUser");
+            }}
+          >
+            회원정보조회
+          </button>
+          <button
+            className="btn_save"
+            onClick={() => {
+              navigate("/getEntireInquiry");
+            }}
+          >
+            견적요청목록
+          </button>
+        </Admin>
       </div>
     </div>
   );
