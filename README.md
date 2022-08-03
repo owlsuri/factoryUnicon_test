@@ -2,3 +2,5 @@
 
 git clone 하신 후, 
 npm install -> npm start 하시면 됩니다.
+
+감사합니다!
